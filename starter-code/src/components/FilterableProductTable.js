@@ -1,40 +1,35 @@
 import React, {Component} from 'react';
 import SearchBar from "./SearchBar";
 import Table from "./Table";
+import data from '../data.json'
 
 class FilterableProductTable extends Component {
-    constructor(){
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            "data": [
-                {"category": "Sporting Goods",  "price": "$49.99",    "stocked": true,    "name": "Football"},
-                {"category": "Sporting Goods",  "price": "$9.99",     "stocked": true,    "name": "Baseball"},
-                {"category": "Sporting Goods",  "price": "$29.99",    "stocked": false,   "name": "Basketball"},
-                {"category": "Sporting Goods",  "price": "$199.99",   "stocked": true,    "name": "Tennis Balls"},
-                {"category": "Electronics",     "price": "$99.99",    "stocked": true,    "name": "iPod Touch"},
-                {"category": "Electronics",     "price": "$399.99",   "stocked": false,   "name": "iPhone X"},
-                {"category": "Electronics",     "price": "$199.99",   "stocked": true,    "name": "iPad Mini"},
-                {"category": "Electronics",     "price": "$199.99",   "stocked": true,    "name": "Huawei P10"}
-            ]
+            data: data.data,
+            fiterText: '',
+            stockedOnly: false
         }
     }
 
+    /*componentWillMount() {
+        this.sortSports();
+        this.sortElectronics();
+    }*/
 
+   render()     {
+        /*console.log(this.sortElectronics)
+        console.log(this.sortSports)*/
+           return (
+                <div>
+                    <SearchBar/>
+                    <Table products={this.state.data}/>
+                </div>
+            )
+        }
+    };
 
-}
-
-
-
-    render(){
-
-        return(
-            <div>
-                <SearchBar/>
-                <Table data = {this.state.data} />
-            </div>
-        )
-    }
-};
 
 export default FilterableProductTable;
 
