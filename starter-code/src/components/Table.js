@@ -6,7 +6,9 @@ class Table extends Component {
     render() {
         const rows = [];
         let previousCategory = '';
+        let filter = this.props.filter.toLowerCase();
         this.props.products.forEach(product => {
+            if(product.name.toLowerCase().indexOf(filter) === -1) return;
             if (product.category !== previousCategory){
                 rows.push(<ProductCategory category={product.category}/>)
             }
@@ -17,12 +19,14 @@ class Table extends Component {
         return (
             <div>
                 <table>
+                    <tbody>
                     <tr>
                         <th>Name</th>
                         <th>Price</th>
                     </tr>
                     {rows}
-                    </table>
+                    </tbody>
+                </table>
             </div>
         )
     }

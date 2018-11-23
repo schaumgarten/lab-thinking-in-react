@@ -8,7 +8,7 @@ class FilterableProductTable extends Component {
         super(props);
         this.state = {
             data: data.data,
-            fiterText: '',
+            filterText: '',
             stockedOnly: false
         }
     }
@@ -17,14 +17,21 @@ class FilterableProductTable extends Component {
         this.sortSports();
         this.sortElectronics();
     }*/
+    changeFilterText = (filterText) => {
+        this.setState({filterText})
+    };
+
+    changeStockOnly = (stockedOnly) => {
+        this.setState({stockedOnly})
+    };
 
    render()     {
         /*console.log(this.sortElectronics)
         console.log(this.sortSports)*/
            return (
                 <div>
-                    <SearchBar/>
-                    <Table products={this.state.data}/>
+                    <SearchBar filter={this.state.filterText} onlyStock={this.state.stockedOnly} filterTextChange={this.changeFilterText} stockOnlyChange={this.changeStockOnly}/>
+                    <Table products={this.state.data} filter={this.state.filterText} onlyStock={this.state.stockedOnly}/>
                 </div>
             )
         }
